@@ -1,4 +1,4 @@
-# Serverless Selenium UI Testing
+# Selenium UI Testing
 
 This repository contains the resources referred in [this blog post](https://aws.amazon.com/blogs/devops/serverless-ui-testing-using-selenium-aws-lambda-aws-fargate-and-aws-developer-tools/). Follow the steps below to deploy this sample application to run serverless UI testing using Selenium, AWS Lambda, AWS Fargate, and AWS Developer Tools
 
