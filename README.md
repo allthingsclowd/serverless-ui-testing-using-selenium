@@ -49,7 +49,7 @@ AND DISCLAIMERS APPLY EXCEPT TO THE EXTENT PROHIBITED BY APPLICABLE LAW.
 
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
 
-## License
+## License ##
 
 This library is licensed under the MIT-0 License. See the LICENSE file.
 
