@@ -350,8 +350,8 @@ Resources:
     Type: AWS::Amplify::Branch
     Properties: 
       AppId: !GetAtt StatusPage.AppId
-      BranchName: master
-      Description: Master branch for Status
+      BranchName: main
+      Description: Main branch for Status
       EnableAutoBuild: true
       Stage: PRODUCTION
       Tags: 
@@ -824,7 +824,7 @@ Resources:
                 -
                   Name: SUITestSourceOutput
               Configuration:  
-                BranchName: master
+                BranchName: main
                 RepositoryName: !Ref RepositoryName
               RunOrder: 1
         -
