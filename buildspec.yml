@@ -33,7 +33,7 @@ phases:
           git rm status/generatetable.js.temp
           git commit -m "Updated region, DDB Table & Cognito IDP"
           git branch tmp
-          git checkout master
+          git checkout main
           git merge tmp
-          git push origin HEAD:master
+          git push origin HEAD:main
         fi
