@@ -298,8 +298,8 @@ Resources:
     Type: AWS::Amplify::Branch
     Properties: 
       AppId: !GetAtt TestApp.AppId
-      BranchName: master
-      Description: Master branch for App
+      BranchName: main
+      Description: Main branch for App
       EnableAutoBuild: true
       Stage: PRODUCTION
       Tags: 
