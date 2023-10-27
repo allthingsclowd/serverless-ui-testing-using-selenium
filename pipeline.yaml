@@ -42,7 +42,8 @@ Resources:
           - BucketKeyEnabled: true
             ServerSideEncryptionByDefault:
               SSEAlgorithm: AES256
-      BucketName: !Sub ${AWS::StackName}-test-output-${AWS::AccountId}-${AWS::Region}
+      # BucketName: !Sub ${AWS::StackName}-test-output-${AWS::AccountId}-${AWS::Region}
+      BucketName: grazzer987654321grazzer
       VersioningConfiguration:
         Status: Enabled
       Tags:
