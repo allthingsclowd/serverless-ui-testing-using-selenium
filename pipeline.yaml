@@ -43,7 +43,6 @@ Resources:
             ServerSideEncryptionByDefault:
               SSEAlgorithm: AES256
       BucketName: !Sub ${AWS::StackName}-test-output-${AWS::AccountId}-${AWS::Region}
-      #BucketName: testbucketgrazzer987654321grazzer
       VersioningConfiguration:
         Status: Enabled
       Tags:
@@ -62,7 +61,6 @@ Resources:
             ServerSideEncryptionByDefault:
               SSEAlgorithm: AES256
       BucketName: !Sub ${AWS::StackName}-codepipeline-artifact-${AWS::AccountId}-${AWS::Region}
-      #BucketName: codebucketgrazzer987654321grazzer
       VersioningConfiguration:
         Status: Enabled
       Tags:
