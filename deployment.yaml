@@ -460,8 +460,8 @@ Resources:
       Environment: 
         Variables:
           BROWSER: Chrome
-          BROWSER_VERSION: "88.0.4324.150"
-          DRIVER_VERSION: "88.0.4324.96"
+          BROWSER_VERSION: "114.0.5735.90"
+          DRIVER_VERSION: "114.0.5735.90"
       FunctionName: !Sub SUIT-${AWS::StackName}-ChromeStable
       MemorySize: 1024
       PackageType: Image
@@ -489,8 +489,8 @@ Resources:
       Environment: 
         Variables:
           BROWSER: Chrome
-          BROWSER_VERSION: "89.0.4389.47"
-          DRIVER_VERSION: "89.0.4389.23"
+          BROWSER_VERSION: "113.0.5672.63"
+          DRIVER_VERSION: "113.0.5672.63"
       FunctionName: !Sub SUIT-${AWS::StackName}-ChromeBeta
       MemorySize: 1024
       PackageType: Image
@@ -518,8 +518,8 @@ Resources:
       Environment: 
         Variables:
           BROWSER: Chrome
-          BROWSER_VERSION: "88.0.4324.150"
-          DRIVER_VERSION: "88.0.4324.96"
+          BROWSER_VERSION: "113.0.5672.63"
+          DRIVER_VERSION: "113.0.5672.63"
           DISPLAY: ":25"
       FunctionName: !Sub SUIT-${AWS::StackName}-ChromeVideo
       MemorySize: 2048
@@ -652,10 +652,10 @@ Resources:
                                       Value.$: $$.Task.Token
                                     - 
                                       Name: BROWSER_VERSION
-                                      Value: '86.0'
+                                      Value: '117.0'
                                     - 
                                       Name: DRIVER_VERSION
-                                      Value: '0.29.0'
+                                      Value: '0.32.2'
                                     - 
                                       Name: module
                                       Value.$: $$.Execution.Input.DDBKey.ModId.S
@@ -702,10 +702,10 @@ Resources:
                                       Value.$: $$.Task.Token
                                     - 
                                       Name: BROWSER_VERSION
-                                      Value: 87.0b3
+                                      Value: '118.0'
                                     - 
                                       Name: DRIVER_VERSION
-                                      Value: '0.29.0'
+                                      Value: '0.32.2'
                                     - 
                                       Name: module
                                       Value.$: $$.Execution.Input.DDBKey.ModId.S
@@ -745,10 +745,10 @@ Resources:
                                 Value.$: $$.Task.Token
                               - 
                                 Name: BROWSER_VERSION
-                                Value: '86.0'
+                                Value: '117.0'
                               - 
                                 Name: DRIVER_VERSION
-                                Value: '0.29.0'
+                                Value: '0.32.2'
                               - 
                                 Name: module
                                 Value: mod7
