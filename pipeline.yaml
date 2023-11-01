@@ -647,8 +647,8 @@ Resources:
                   Action:
                     - "amplify:StartJob"
                   Resource:
-                    - !Sub arn:aws:amplify:${AWS::Region}:${AWS::AccountId}:apps/${TestApp.AppId}/branches/master/jobs/*
-                    - !Sub arn:aws:amplify:${AWS::Region}:${AWS::AccountId}:apps/${StatusPage.AppId}/branches/master/jobs/*
+                    - !Sub arn:aws:amplify:${AWS::Region}:${AWS::AccountId}:apps/${TestApp.AppId}/branches/main/jobs/*
+                    - !Sub arn:aws:amplify:${AWS::Region}:${AWS::AccountId}:apps/${StatusPage.AppId}/branches/main/jobs/*
                 -
                   Effect: "Allow"
                   Action:
@@ -899,7 +899,7 @@ Resources:
                 Provider: Manual
               Configuration:
                 NotificationArn: !Ref ApprovalTopic
-                ExternalEntityLink: !Sub https://master.${StatusPage.DefaultDomain}/?earn=#{TestVariables.ExecutionArn}
+                ExternalEntityLink: !Sub https://main.${StatusPage.DefaultDomain}/?earn=#{TestVariables.ExecutionArn}
                 CustomData: Approve production deployment after validating the test status.
               RunOrder: 1
         -
@@ -933,9 +933,9 @@ Resources:
 Outputs:
   TestWebsite:
     Description: "URL of Test Website"
-    Value: !Sub https://master.${TestApp.DefaultDomain}
+    Value: !Sub https://main.${TestApp.DefaultDomain}
 
   StatusWebsite:
     Description: "URL of Status Website"
-    Value: !Sub https://master.${StatusPage.DefaultDomain}
+    Value: !Sub https://main.${StatusPage.DefaultDomain}
 

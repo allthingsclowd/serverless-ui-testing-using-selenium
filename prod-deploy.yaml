@@ -80,8 +80,8 @@ Resources:
     Type: AWS::Amplify::Branch
     Properties: 
       AppId: !GetAtt ProdApp.AppId
-      BranchName: master
-      Description: Master branch for App
+      BranchName: main
+      Description: main branch for App
       EnableAutoBuild: true
       Stage: PRODUCTION
       Tags: 
@@ -176,10 +176,10 @@ Resources:
     Properties:
       Name: ProdAppURL
       Type: String
-      Value: !Sub https://master.${ProdApp.DefaultDomain}
+      Value: !Sub https://main.${ProdApp.DefaultDomain}
       Description: URL of production website
 
 Outputs:
   ProdWebsite:
     Description: "URL of Prod Website"
-    Value: !Sub https://master.${ProdApp.DefaultDomain}
+    Value: !Sub https://main.${ProdApp.DefaultDomain}
