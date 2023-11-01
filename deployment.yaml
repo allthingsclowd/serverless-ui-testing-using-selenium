@@ -414,7 +414,7 @@ Resources:
             - Name: BROWSER
               Value: Firefox
             - Name: WebURL
-              Value: !Sub https://master.${TestAppDomain}
+              Value: !Sub https://main.${TestAppDomain}
             - Name: StatusTable
               Value: !Ref StatusTable
             - Name: s3buck
@@ -571,7 +571,7 @@ Resources:
                               testrun.$: $$.Execution.Id
                               s3buck: !Ref TestOutputBucket
                               s3prefix: !Sub ${AWS::StackName}/
-                              WebURL: !Sub https://master.${TestAppDomain}
+                              WebURL: !Sub https://main.${TestAppDomain}
                               StatusTable: !Ref StatusTable
                           End: true
                     End: true
@@ -596,7 +596,7 @@ Resources:
                               testrun.$: $$.Execution.Id
                               s3buck: !Ref TestOutputBucket
                               s3prefix: !Sub ${AWS::StackName}/
-                              WebURL: !Sub https://master.${TestAppDomain}
+                              WebURL: !Sub https://main.${TestAppDomain}
                               StatusTable: !Ref StatusTable
                           End: true
                     End: true
@@ -614,7 +614,7 @@ Resources:
                         testrun.$: $$.Execution.Id
                         s3buck: !Ref TestOutputBucket
                         s3prefix: !Sub ${AWS::StackName}/
-                        WebURL: !Sub https://master.${TestAppDomain}
+                        WebURL: !Sub https://main.${TestAppDomain}
                         StatusTable: !Ref StatusTable
                     End: true
               - 
