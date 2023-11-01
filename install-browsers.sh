@@ -4,10 +4,10 @@ declare -A chrome_versions
 
 # Enter the list of browsers to be downloaded
 ### Using Chromium as documented here - https://www.chromium.org/getting-involved/download-chromium
-chrome_versions=( ['88.0.4324.150']='827102' ['89.0.4389.47']='843831' )
-chrome_drivers=( "88.0.4324.96" "89.0.4389.23" )
-firefox_versions=( "86.0" "87.0b3" )
-gecko_drivers=( "0.29.0" )
+chrome_versions=( ['114.0.5735.90']='1135570' ['113.0.5672.63']='1121455' )
+chrome_drivers=( "114.0.5735.90" "113.0.5672.63" )
+firefox_versions=( "117.01" "118.02" )
+gecko_drivers=( "0.32.2" )
 
 # Download Chrome
 for br in "${!chrome_versions[@]}"
