@@ -19,6 +19,7 @@ do
     unzip -q "/opt/chrome/$br/chrome-linux.zip" -d "/opt/chrome/$br/"
     mv /opt/chrome/$br/chrome-linux/* /opt/chrome/$br/
     rm -rf /opt/chrome/$br/chrome-linux "/opt/chrome/$br/chrome-linux.zip"
+    ls -al "/opt/chrome/$br/*"
 done
 
 # Download Chromedriver
@@ -31,6 +32,8 @@ do
     unzip -q "/opt/chromedriver/$dr/chromedriver_linux64.zip" -d "/opt/chromedriver/$dr/"
     chmod +x "/opt/chromedriver/$dr/chromedriver"
     rm -rf "/opt/chromedriver/$dr/chromedriver_linux64.zip"
+    ls -al "/opt/chromedriver/$dr/chromedriver"
+    "/opt/chromedriver/$dr/chromedriver" --version
 done
 
 # Download Firefox
@@ -44,6 +47,7 @@ do
     mv "/opt/firefox/$br/firefox" "/opt/firefox/$br/firefox-temp"
     mv /opt/firefox/$br/firefox-temp/* /opt/firefox/$br/
     rm -rf "/opt/firefox/$br/firefox-$br.tar.bz2"
+    ls -al "/opt/firefox/$br/*"
 done
 
 # Download Geckodriver
@@ -56,5 +60,7 @@ do
     tar -zxf "/opt/geckodriver/$dr/geckodriver-v$dr-linux64.tar.gz" -C "/opt/geckodriver/$dr/"
     chmod +x "/opt/geckodriver/$dr/geckodriver"
     rm -rf "/opt/geckodriver/$dr/geckodriver-v$dr-linux64.tar.gz"
+    ls -al "/opt/geckodriver/$dr/geckodriver"
+    "/opt/geckodriver/$dr/geckodriver" --version
 done
 
