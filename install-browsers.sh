@@ -4,15 +4,16 @@ declare -A chrome_versions
 
 # Enter the list of browsers to be downloaded
 ### Using Chromium as documented here - https://www.chromium.org/getting-involved/download-chromium
-chrome_versions=( ['114.0.5735.90']='1135570' ['113.0.5672.63']='1121455' )
+chrome_versions=( ['114.0.5735.90']='1135580' ['113.0.5672.63']='1121461' )
 chrome_drivers=( "114.0.5735.90" "113.0.5672.63" )
-firefox_versions=( "117.01" "118.02" )
+firefox_versions=( "117.0" "118.0" )
 gecko_drivers=( "0.32.2" )
 
 # Download Chrome
 for br in "${!chrome_versions[@]}"
 do
     echo "Downloading Chrome version $br"
+    echo "Chrome URL => https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2F${chrome_versions[$br]}%2Fchrome-linux.zip?alt=media"
     mkdir -p "/opt/chrome/$br"
     curl -Lo "/opt/chrome/$br/chrome-linux.zip" "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2F${chrome_versions[$br]}%2Fchrome-linux.zip?alt=media"
     unzip -q "/opt/chrome/$br/chrome-linux.zip" -d "/opt/chrome/$br/"
@@ -24,6 +25,7 @@ done
 for dr in ${chrome_drivers[@]}
 do
     echo "Downloading Chromedriver version $dr"
+    echo "Chromedriver URL => https://chromedriver.storage.googleapis.com/$dr/chromedriver_linux64.zip"
     mkdir -p "/opt/chromedriver/$dr"
     curl -Lo "/opt/chromedriver/$dr/chromedriver_linux64.zip" "https://chromedriver.storage.googleapis.com/$dr/chromedriver_linux64.zip"
     unzip -q "/opt/chromedriver/$dr/chromedriver_linux64.zip" -d "/opt/chromedriver/$dr/"
@@ -35,6 +37,7 @@ done
 for br in ${firefox_versions[@]}
 do
     echo "Downloading Firefox version $br"
+    echo "Firefox URL => http://ftp.mozilla.org/pub/firefox/releases/$br/linux-x86_64/en-US/firefox-$br.tar.bz2"
     mkdir -p "/opt/firefox/$br"
     curl -Lo "/opt/firefox/$br/firefox-$br.tar.bz2" "http://ftp.mozilla.org/pub/firefox/releases/$br/linux-x86_64/en-US/firefox-$br.tar.bz2"
     tar -jxf "/opt/firefox/$br/firefox-$br.tar.bz2" -C "/opt/firefox/$br/"
