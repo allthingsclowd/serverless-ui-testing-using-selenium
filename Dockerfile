@@ -1,5 +1,5 @@
 # Install Browser, OS dependencies and Python modules
-FROM public.ecr.aws/lambda/python:3.8 as lambda-base
+FROM public.ecr.aws/lambda/python:3.11 as lambda-base
 
 COPY requirements.txt /tmp/
 COPY install-browsers.sh /tmp/

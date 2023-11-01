@@ -7,7 +7,7 @@ declare -A chrome_versions
 chrome_versions=( ['114.0.5735.90']='1135580' ['113.0.5672.63']='1121461' )
 chrome_drivers=( "114.0.5735.90" "113.0.5672.63" )
 firefox_versions=( "117.0" "118.0" )
-gecko_drivers=( "0.32.2" )
+gecko_drivers=( "0.32.2" "0.24.0" )
 
 # Download Chrome
 for br in "${!chrome_versions[@]}"
@@ -50,6 +50,7 @@ done
 for dr in ${gecko_drivers[@]}
 do
     echo "Downloading Geckodriver version $dr"
+    echo "Gecko Driver URL -> https://github.com/mozilla/geckodriver/releases/download/v$dr/geckodriver-v$dr-linux64.tar.gz"
     mkdir -p "/opt/geckodriver/$dr"
     curl -Lo "/opt/geckodriver/$dr/geckodriver-v$dr-linux64.tar.gz" "https://github.com/mozilla/geckodriver/releases/download/v$dr/geckodriver-v$dr-linux64.tar.gz"
     tar -zxf "/opt/geckodriver/$dr/geckodriver-v$dr-linux64.tar.gz" -C "/opt/geckodriver/$dr/"
