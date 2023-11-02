@@ -1,4 +1,4 @@
 pyvirtualdisplay
 awslambdaric
-selenium==4.9
+selenium
 boto3
