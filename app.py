@@ -20,6 +20,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
+
 br = os.environ['BROWSER'].lower()
 br_version = os.environ['BROWSER_VERSION']
 driver_version = os.environ['DRIVER_VERSION']
