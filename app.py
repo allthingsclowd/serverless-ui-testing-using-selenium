@@ -158,7 +158,7 @@ def tc0002(browser, mod, tc, s3buck, s3prefix, trun, main_url, status_table):
         browser.get(main_url)
         assert 'Serverless UI Testing' in browser.title
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'kp')))
-        browser.find_element_by_xpath("//*[@id='bc']/a").click()
+        browser.find_element("xpath","//*[@id='bc']/a").click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'displaybtn')))
         assert 'Serverless UI Testing - Button Click.' in browser.title
         browser.find_element_by_id('displaybtn').click()
@@ -199,7 +199,7 @@ def tc0011(browser, mod, tc, s3buck, s3prefix, trun, main_url, status_table):
         browser.get(main_url)
         assert 'Serverless UI Testing' in browser.title
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'kp')))
-        browser.find_element_by_xpath("//*[@id='bc']/a").click()
+        browser.find_element("xpath","//*[@id='bc']/a").click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'displaybtn')))
         assert 'Serverless UI Testing - Button Click.' in browser.title
         browser.find_element_by_id('displaybtn').click()
@@ -207,7 +207,7 @@ def tc0011(browser, mod, tc, s3buck, s3prefix, trun, main_url, status_table):
         browser.get(main_url)
         assert 'Serverless UI Testing' in browser.title
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'kp')))
-        browser.find_element_by_xpath("//*[@id='cb']/a").click()
+        browser.find_element("xpath","//*[@id='cb']/a").click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'box3')))
         assert 'Serverless UI Testing - Check Box.' in browser.title
         browser.find_element_by_id('box1').click()
@@ -215,7 +215,7 @@ def tc0011(browser, mod, tc, s3buck, s3prefix, trun, main_url, status_table):
         browser.get(main_url)
         assert 'Serverless UI Testing' in browser.title
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'kp')))
-        browser.find_element_by_xpath("//*[@id='dd']/a").click()
+        browser.find_element("xpath","//*[@id='dd']/a").click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.NAME, 'cbdropdown')))
         assert 'Serverless UI Testing - Dropdown' in browser.title
         browser.find_element_by_id('CP').click()
@@ -223,13 +223,13 @@ def tc0011(browser, mod, tc, s3buck, s3prefix, trun, main_url, status_table):
         browser.get(main_url)
         assert 'Serverless UI Testing' in browser.title
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'kp')))
-        browser.find_element_by_xpath("//*[@id='img']/a").click()
+        browser.find_element("xpath","//*[@id='img']/a").click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'image1')))
         assert 'Serverless UI Testing - Images' in browser.title
         browser.get(main_url)
         assert 'Serverless UI Testing' in browser.title
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'kp')))
-        browser.find_element_by_xpath("//*[@id='kp']/a").click()
+        browser.find_element("xpath","//*[@id='kp']/a").click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'titletext')))
         assert 'Serverless UI Testing - Key Press.' in browser.title
         endtime = datetime.strftime(datetime.today(), '%d-%m-%Y %H:%M:%S,%f')
@@ -266,7 +266,7 @@ def tc0003(browser, mod, tc, s3buck, s3prefix, trun, main_url, status_table):
         browser.get(main_url)
         assert 'Serverless UI Testing' in browser.title
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'kp')))
-        browser.find_element_by_xpath("//*[@id='bc']/a").click()
+        browser.find_element("xpath","//*[@id='bc']/a").click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'displaybtn')))
         assert 'Serverless UI Testing - Button Click.' in browser.title
         browser.find_element_by_id('displaybtn').click()
@@ -309,7 +309,7 @@ def tc0004(browser, mod, tc, s3buck, s3prefix, trun, main_url, status_table):
         browser.get(main_url)
         assert 'Serverless UI Testing' in browser.title
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'kp')))
-        browser.find_element_by_xpath("//*[@id='cb']/a").click()
+        browser.find_element("xpath","//*[@id='cb']/a").click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'box3')))
         assert 'Serverless UI Testing - Check Box.' in browser.title
         browser.find_element_by_id('box1').click()
@@ -364,7 +364,7 @@ def tc0005(browser, mod, tc, s3buck, s3prefix, trun, main_url, status_table):
         browser.get(main_url)
         assert 'Serverless UI Testing' in browser.title
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'kp')))
-        browser.find_element_by_xpath("//*[@id='dd']/a").click()
+        browser.find_element("xpath","//*[@id='dd']/a").click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.NAME, 'cbdropdown')))
         assert 'Serverless UI Testing - Dropdown' in browser.title
         browser.find_element_by_id('CP').click()
@@ -457,7 +457,7 @@ def tc0006(browser, mod, tc, s3buck, s3prefix, trun, main_url, status_table):
         browser.get(main_url)
         assert 'Serverless UI Testing' in browser.title
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'kp')))
-        browser.find_element_by_xpath("//*[@id='img']/a").click()
+        browser.find_element("xpath","//*[@id='img']/a").click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'image1')))
         assert 'Serverless UI Testing - Images' in browser.title
         image_list = browser.find_elements_by_tag_name('img')
@@ -504,7 +504,7 @@ def tc0007(browser, mod, tc, s3buck, s3prefix, trun, main_url, status_table):
         browser.get(main_url)
         assert 'Serverless UI Testing' in browser.title
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'kp')))
-        browser.find_element_by_xpath("//*[@id='kp']/a").click()
+        browser.find_element("xpath","//*[@id='kp']/a").click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'titletext')))
         assert 'Serverless UI Testing - Key Press.' in browser.title
         actions = webdriver.ActionChains(browser)
