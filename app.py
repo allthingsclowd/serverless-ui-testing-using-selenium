@@ -159,12 +159,12 @@ def tc0002(browser, mod, tc, s3buck, s3prefix, trun, main_url, status_table):
         browser.get(main_url)
         assert 'Serverless UI Testing' in browser.title
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'kp')))
-        browser.find_element("xpath","//*[@id='bc']/a").click()
+        browser.find_element(By.XPATH,"//*[@id='bc']/a").click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'displaybtn')))
         assert 'Serverless UI Testing - Button Click.' in browser.title
-        browser.find_element_by_id('displaybtn').click()
+        browser.find_element(By.ID,'displaybtn').click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'cbbutton')))
-        displayed = browser.find_element_by_id('cbbutton').text
+        displayed = browser.find_element(By.ID,'cbbutton').text
         browser.get_screenshot_as_file(fpath)
         with open(fpath, 'rb') as data:
             s3.upload_fileobj(data, s3buck, s3prefix + fname)
@@ -200,37 +200,37 @@ def tc0011(browser, mod, tc, s3buck, s3prefix, trun, main_url, status_table):
         browser.get(main_url)
         assert 'Serverless UI Testing' in browser.title
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'kp')))
-        browser.find_element("xpath","//*[@id='bc']/a").click()
+        browser.find_element(By.XPATH,"//*[@id='bc']/a").click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'displaybtn')))
         assert 'Serverless UI Testing - Button Click.' in browser.title
-        browser.find_element_by_id('displaybtn').click()
+        browser.find_element(By.ID,'displaybtn').click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'cbbutton')))
         browser.get(main_url)
         assert 'Serverless UI Testing' in browser.title
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'kp')))
-        browser.find_element("xpath","//*[@id='cb']/a").click()
+        browser.find_element(By.XPATH,"//*[@id='cb']/a").click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'box3')))
         assert 'Serverless UI Testing - Check Box.' in browser.title
-        browser.find_element_by_id('box1').click()
+        browser.find_element(By.ID,'box1').click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'cbbox1')))
         browser.get(main_url)
         assert 'Serverless UI Testing' in browser.title
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'kp')))
-        browser.find_element("xpath","//*[@id='dd']/a").click()
+        browser.find_element(By.XPATH,"//*[@id='dd']/a").click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.NAME, 'cbdropdown')))
         assert 'Serverless UI Testing - Dropdown' in browser.title
-        browser.find_element_by_id('CP').click()
+        browser.find_element(By.ID,'CP').click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'dvidrop')))
         browser.get(main_url)
         assert 'Serverless UI Testing' in browser.title
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'kp')))
-        browser.find_element("xpath","//*[@id='img']/a").click()
+        browser.find_element(By.XPATH,"//*[@id='img']/a").click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'image1')))
         assert 'Serverless UI Testing - Images' in browser.title
         browser.get(main_url)
         assert 'Serverless UI Testing' in browser.title
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'kp')))
-        browser.find_element("xpath","//*[@id='kp']/a").click()
+        browser.find_element(By.XPATH,"//*[@id='kp']/a").click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'titletext')))
         assert 'Serverless UI Testing - Key Press.' in browser.title
         endtime = datetime.strftime(datetime.today(), '%d-%m-%Y %H:%M:%S,%f')
@@ -267,15 +267,15 @@ def tc0003(browser, mod, tc, s3buck, s3prefix, trun, main_url, status_table):
         browser.get(main_url)
         assert 'Serverless UI Testing' in browser.title
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'kp')))
-        browser.find_element("xpath","//*[@id='bc']/a").click()
+        browser.find_element(By.XPATH,"//*[@id='bc']/a").click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'displaybtn')))
         assert 'Serverless UI Testing - Button Click.' in browser.title
-        browser.find_element_by_id('displaybtn').click()
+        browser.find_element(By.ID,'displaybtn').click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'cbbutton')))
-        displayed = browser.find_element_by_id('cbbutton').text
-        browser.find_element_by_id('resetbtn').click()
+        displayed = browser.find_element(By.ID,'cbbutton').text
+        browser.find_element(By.ID,'resetbtn').click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'cbbutton')))
-        displayed = browser.find_element_by_id('cbbutton').text
+        displayed = browser.find_element(By.ID,'cbbutton').text
         browser.get_screenshot_as_file(fpath)
         with open(fpath, 'rb') as data:
             s3.upload_fileobj(data, s3buck, s3prefix + fname)
@@ -310,28 +310,28 @@ def tc0004(browser, mod, tc, s3buck, s3prefix, trun, main_url, status_table):
         browser.get(main_url)
         assert 'Serverless UI Testing' in browser.title
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'kp')))
-        browser.find_element("xpath","//*[@id='cb']/a").click()
+        browser.find_element(By.XPATH,"//*[@id='cb']/a").click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'box3')))
         assert 'Serverless UI Testing - Check Box.' in browser.title
-        browser.find_element_by_id('box1').click()
+        browser.find_element(By.ID,'box1').click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'cbbox1')))
-        displayed = browser.find_element_by_id('cbbox1').text
+        displayed = browser.find_element(By.ID,'cbbox1').text
         if displayed != 'Checkbox 1 checked.':
             endtime = datetime.strftime(datetime.today(), '%d-%m-%Y %H:%M:%S,%f')
             update_status(mod, tc, starttime, endtime, 'Failed',
                           'Checkbox1 text was not displayed.', trun, status_table)
             return {"status": "Failed", "message": "Checkbox1 text was not displayed."}
-        browser.find_element_by_id('box2').click()
+        browser.find_element(By.ID,'box2').click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'cbbox2')))
-        displayed = browser.find_element_by_id('cbbox2').text
+        displayed = browser.find_element(By.ID,'cbbox2').text
         if displayed != 'Checkbox 2 checked.':
             endtime = datetime.strftime(datetime.today(), '%d-%m-%Y %H:%M:%S,%f')
             update_status(mod, tc, starttime, endtime, 'Failed',
                           'Checkbox2 text was not displayed.', trun, status_table)
             return {"status": "Failed", "message": "Checkbox2 text was not displayed."}
-        browser.find_element_by_id('box1').click()
+        browser.find_element(By.ID,'box1').click()
         WebDriverWait(browser, 20).until_not(EC.visibility_of_element_located((By.ID, 'cbbox1')))
-        displayed = browser.find_element_by_id('cbbox1').text
+        displayed = browser.find_element(By.ID,'cbbox1').text
         if displayed:
             endtime = datetime.strftime(datetime.today(), '%d-%m-%Y %H:%M:%S,%f')
             update_status(mod, tc, starttime, endtime, 'Failed',
@@ -365,12 +365,12 @@ def tc0005(browser, mod, tc, s3buck, s3prefix, trun, main_url, status_table):
         browser.get(main_url)
         assert 'Serverless UI Testing' in browser.title
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'kp')))
-        browser.find_element("xpath","//*[@id='dd']/a").click()
+        browser.find_element(By.XPATH,"//*[@id='dd']/a").click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.NAME, 'cbdropdown')))
         assert 'Serverless UI Testing - Dropdown' in browser.title
-        browser.find_element_by_id('CP').click()
+        browser.find_element(By.ID,'CP').click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'dvidrop')))
-        displayed = browser.find_element_by_id('dvidrop').text
+        displayed = browser.find_element(By.ID,'dvidrop').text
         cp_text = 'AWS CodePipeline is a continuous integration and continuous delivery service ' + \
                   'for fast and reliable application and infrastructure updates.'
         if displayed != cp_text:
@@ -379,9 +379,9 @@ def tc0005(browser, mod, tc, s3buck, s3prefix, trun, main_url, status_table):
                           'Expected text for CodePipeline from dropdown was not displayed.', trun, status_table)
             return {"status": "Failed", "message":
                     "Expected text for CodePipeline from dropdown was not displayed."}
-        browser.find_element_by_id('CC').click()
+        browser.find_element(By.ID,'CC').click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'dvidrop')))
-        displayed = browser.find_element_by_id('dvidrop').text
+        displayed = browser.find_element(By.ID,'dvidrop').text
         cc_text = 'AWS CodeCommit is a fully-managed source control service that makes it easy for ' + \
                   'companies to host secure and highly scalable private Git repositories.'
         if displayed != cc_text:
@@ -390,9 +390,9 @@ def tc0005(browser, mod, tc, s3buck, s3prefix, trun, main_url, status_table):
                           'Expected text for CodeCommit from dropdown was not displayed.', trun, status_table)
             return {"status": "Failed", "message":
                     "Expected text for CodeCommit from dropdown was not displayed."}
-        browser.find_element_by_id('CB').click()
+        browser.find_element(By.ID,'CB').click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'dvidrop')))
-        displayed = browser.find_element_by_id('dvidrop').text
+        displayed = browser.find_element(By.ID,'dvidrop').text
         cb_text = 'AWS CodeBuild is a fully managed build service that compiles source code, ' + \
                   'runs tests, and produces software packages that are ready to deploy.'
         if displayed != cb_text:
@@ -401,9 +401,9 @@ def tc0005(browser, mod, tc, s3buck, s3prefix, trun, main_url, status_table):
                           'Expected text for CodeBuild from dropdown was not displayed.', trun, status_table)
             return {"status": "Failed", "message":
                     "Expected text for CodeBuild from dropdown was not displayed."}
-        browser.find_element_by_id('CD').click()
+        browser.find_element(By.ID,'CD').click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'dvidrop')))
-        displayed = browser.find_element_by_id('dvidrop').text
+        displayed = browser.find_element(By.ID,'dvidrop').text
         cd_text = 'AWS CodeDeploy is a service that automates code deployments to any instance, ' + \
                   'including Amazon EC2 instances and instances running on-premises.'
         if displayed != cd_text:
@@ -412,9 +412,9 @@ def tc0005(browser, mod, tc, s3buck, s3prefix, trun, main_url, status_table):
                           'Expected text for CodeDeploy from dropdown was not displayed.', trun, status_table)
             return {"status": "Failed", "message":
                     "Expected text for CodeDeploy from dropdown was not displayed."}
-        browser.find_element_by_id('CS').click()
+        browser.find_element(By.ID,'CS').click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'dvidrop')))
-        displayed = browser.find_element_by_id('dvidrop').text
+        displayed = browser.find_element(By.ID,'dvidrop').text
         cs_text = 'AWS CodeStar enables you to quickly develop, build, and deploy applications on AWS. ' + \
                   'AWS CodeStar provides a unified user interface, enabling you to easily manage your ' + \
                   'software development activities in one place.'
@@ -424,9 +424,9 @@ def tc0005(browser, mod, tc, s3buck, s3prefix, trun, main_url, status_table):
                           'Expected text for CodeStar from dropdown was not displayed.', trun, status_table)
             return {"status": "Failed", "message":
                     "Expected text for CodeStar from dropdown was not displayed."}
-        browser.find_element_by_id('emp').click()
+        browser.find_element(By.ID,'emp').click()
         # WebDriverWait(browser, 120).until(EC.visibility_of_element_located((By.ID, 'dvidrop')))
-        displayed = browser.find_element_by_id('dvidrop').text
+        displayed = browser.find_element(By.ID,'dvidrop').text
         if displayed:
             endtime = datetime.strftime(datetime.today(), '%d-%m-%Y %H:%M:%S,%f')
             update_status(mod, tc, starttime, endtime, 'Failed', 'Expected no text', trun, status_table)
@@ -458,7 +458,7 @@ def tc0006(browser, mod, tc, s3buck, s3prefix, trun, main_url, status_table):
         browser.get(main_url)
         assert 'Serverless UI Testing' in browser.title
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'kp')))
-        browser.find_element("xpath","//*[@id='img']/a").click()
+        browser.find_element(By.XPATH,"//*[@id='img']/a").click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'image1')))
         assert 'Serverless UI Testing - Images' in browser.title
         image_list = browser.find_elements_by_tag_name('img')
@@ -505,17 +505,17 @@ def tc0007(browser, mod, tc, s3buck, s3prefix, trun, main_url, status_table):
         browser.get(main_url)
         assert 'Serverless UI Testing' in browser.title
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'kp')))
-        browser.find_element("xpath","//*[@id='kp']/a").click()
+        browser.find_element(By.XPATH,"//*[@id='kp']/a").click()
         WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.ID, 'titletext')))
         assert 'Serverless UI Testing - Key Press.' in browser.title
         actions = webdriver.ActionChains(browser)
-        actions.move_to_element(browser.find_element_by_id('titletext'))
+        actions.move_to_element(browser.find_element(By.ID,'titletext'))
         actions.click()
         rnum = random.randrange(0, 20)
         actions.send_keys(key_pos[rnum])
         actions.perform()
         WebDriverWait(browser, 5).until(EC.visibility_of_element_located((By.ID, 'keytext')))
-        displayed = browser.find_element_by_id('keytext').text
+        displayed = browser.find_element(By.ID,'keytext').text
         if displayed != 'You pressed \'' + key_word[rnum] + '\' key.':
             endtime = datetime.strftime(datetime.today(), '%d-%m-%Y %H:%M:%S,%f')
             update_status(mod, tc, starttime, endtime, 'Failed', 'Expected key press not displayed.', trun, status_table)
