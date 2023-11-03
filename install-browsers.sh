@@ -7,7 +7,7 @@ declare -A chrome_versions
 chrome_versions=( ['114.0.5735.90']='1135580' ['113.0.5672.63']='1121461' )
 chrome_drivers=( "114.0.5735.90" "113.0.5672.63" )
 firefox_versions=( "117.0" "118.0" )
-gecko_drivers=( "0.32.2" "0.24.0" )
+gecko_drivers=( "0.32.2" )
 
 # Download Chrome
 for br in "${!chrome_versions[@]}"
