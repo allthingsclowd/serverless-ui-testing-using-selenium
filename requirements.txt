@@ -1,5 +1,5 @@
 pyvirtualdisplay
 awslambdaric
-selenium==4.8
+selenium
 boto3
 webdriver-manager
