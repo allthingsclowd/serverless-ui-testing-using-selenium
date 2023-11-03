@@ -1,5 +1,5 @@
 # Install Browser, OS dependencies and Python modules
-FROM public.ecr.aws/lambda/python:3.11 as lambda-base
+FROM public.ecr.aws/lambda/python:3.8 as lambda-base
 
 COPY requirements.txt /tmp/
 COPY install-browsers.sh /tmp/
@@ -21,7 +21,7 @@ RUN pip install -r /tmp/requirements.txt -q
 RUN yum remove xz tar unzip bzip2 -y
 
 # Build FFmpeg
-FROM public.ecr.aws/lambda/python:3.11 as ffmpeg
+FROM public.ecr.aws/lambda/python:3.8 as ffmpeg
 WORKDIR /ffmpeg_sources
 RUN yum install autoconf automake bzip2 bzip2-devel cmake libxcb libxcb-devel \
     freetype-devel gcc gcc-c++ git libtool make pkgconfig zlib-devel -y -q
