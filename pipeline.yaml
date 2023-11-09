@@ -217,6 +217,7 @@ Resources:
                     Effect: "Allow"
                     Action:
                       - "dynamodb:Query"
+                      - "dynamodb:Scan"
                     Resource:
                       - !GetAtt StatusTable.Arn
 
