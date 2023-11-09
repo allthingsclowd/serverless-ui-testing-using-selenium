@@ -69,15 +69,35 @@ function populateTable(items) {
         let row = tableBody.insertRow();
         row.insertCell(0).textContent = item.testrunid;
         row.insertCell(1).textContent = item.testcaseid;
-        row.insertCell(2).textContent = item.details.EndTime.S;
-        row.insertCell(3).textContent = item.details.ErrorMessage.S;
-        row.insertCell(4).textContent = item.details.StartTime.S;
-        row.insertCell(5).textContent = item.details.Status.S;
-        row.insertCell(6).textContent = item.details.TimeTaken.S;
+        row.insertCell(2).textContent = item.details.M.EndTime.S;
+        row.insertCell(3).textContent = item.details.M.ErrorMessage.S;
+        row.insertCell(4).textContent = item.details.M.StartTime.S;
+        row.insertCell(5).textContent = item.details.M.Status.S;
+        row.insertCell(6).textContent = item.details.M.TimeTaken.S;
     });
+
+    // Inform the MutationObserver about the table update
+    mutationObserverCallback();
 }
 
-// Attach event listeners
+// MutationObserver for observing changes in the table
+const tableBody = document.getElementById('dynamodbTable').getElementsByTagName('tbody')[0];
+const observer = new MutationObserver(function(mutationsList) {
+    for (let mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+            console.log('Table updated with new data.');
+        }
+    }
+});
+
+observer.observe(tableBody, { childList: true, subtree: true });
+
+// Callback function to handle mutations
+function mutationObserverCallback() {
+    // Placeholder for additional logic to handle DOM changes
+}
+
+// Event listener for dropdown changes
 document.getElementById('testRunIdDropdown').addEventListener('change', function() {
     const selectedTestRunId = this.value;
     if (selectedTestRunId) {
@@ -86,3 +106,6 @@ document.getElementById('testRunIdDropdown').addEventListener('change', function
 });
 
 authenticate(); // Call authenticate when the script loads
+
+// Clean up observer when it's no longer needed to prevent memory leaks
+// observer.disconnect();
