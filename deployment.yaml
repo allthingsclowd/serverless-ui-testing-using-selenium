@@ -655,7 +655,7 @@ Resources:
                                       Value: '117.0'
                                     - 
                                       Name: DRIVER_VERSION
-                                      Value: '0.24.0'
+                                      Value: '0.32.2'
                                     - 
                                       Name: module
                                       Value.$: $$.Execution.Input.DDBKey.ModId.S
@@ -748,7 +748,7 @@ Resources:
                                 Value: '117.0'
                               - 
                                 Name: DRIVER_VERSION
-                                Value: '0.24.0'
+                                Value: '0.32.2'
                               - 
                                 Name: module
                                 Value: mod7
