@@ -69,11 +69,11 @@ function populateTable(items) {
         let row = tableBody.insertRow();
         row.insertCell(0).textContent = item.testrunid;
         row.insertCell(1).textContent = item.testcaseid;
-        row.insertCell(2).textContent = item.details.M.EndTime.S;
-        row.insertCell(3).textContent = item.details.M.ErrorMessage.S;
-        row.insertCell(4).textContent = item.details.M.StartTime.S;
-        row.insertCell(5).textContent = item.details.M.Status.S;
-        row.insertCell(6).textContent = item.details.M.TimeTaken.S;
+        row.insertCell(2).textContent = item.details.EndTime;
+        row.insertCell(3).textContent = item.details.ErrorMessage;
+        row.insertCell(4).textContent = item.details.StartTime;
+        row.insertCell(5).textContent = item.details.Status;
+        row.insertCell(6).textContent = item.details.TimeTaken;
     });
 
     // Inform the MutationObserver about the table update
