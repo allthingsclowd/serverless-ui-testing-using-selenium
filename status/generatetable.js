@@ -1,54 +1,57 @@
-document.getElementById('login').addEventListener('click', function() {
-  AWS.config.region = 'eu-west-2'; // Replace with your AWS region
-  AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-      IdentityPoolId: 'eu-west-2:0886abc9-4307-4e8b-a155-54624a27e0cf', // Replace with your Cognito Identity Pool ID
-  });
-
-  AWS.config.credentials.get(function(err) {
-      if (err) {
-          console.error("Error retrieving credentials: ", err);
-          return;
-      }
-      fetchLastDynamoDBEntry();
-  });
+// Initialize the Amazon Cognito credentials provider
+AWS.config.region = 'AWS_REGION'; // Region
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: 'Cognito_IDP_ID',
 });
 
-function fetchLastDynamoDBEntry() {
-  var docClient = new AWS.DynamoDB.DocumentClient();
-  var params = {
-      TableName: "StatusTable-bananas", // Replace with your table name
-      // Assuming 'testcaseid' can be used to get the latest entry
-      KeyConditionExpression: "testrunid = :testrunid",
-      ExpressionAttributeValues: {
-          ":testrunid": "suit-d31c933c-f994-46c7-8076-9e347f4bf977" // Replace with your partition key value
-      },
-      ScanIndexForward: false, // This will sort the results in descending order
-      Limit: 1 // We only want the latest (last) entry
-  };
-
-  docClient.query(params, function(err, data) {
-      if (err) {
-          console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
-      } else {
-          populateTable(data.Items);
-      }
-  });
+// Function to authenticate with Cognito
+function authenticate() {
+    AWS.config.credentials.get(function(err) {
+        if (err) {
+            alert("Error: " + err);
+            return;
+        }
+        console.log("Cognito Identity Id: " + AWS.config.credentials.identityId);
+        listDynamoDBRecords();
+    });
 }
 
+// Function to list records from DynamoDB
+function listDynamoDBRecords() {
+    const docClient = new AWS.DynamoDB.DocumentClient();
+    const params = {
+        TableName: 'DDB_STATUS_TABLE',
+    };
+
+    docClient.scan(params, function(err, data) {
+        if (err) {
+            console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
+        } else {
+            populateTable(data.Items);
+        }
+    });
+}
+
+// Function to populate the HTML table with DynamoDB data
 function populateTable(items) {
-  var table = document.getElementById('resultsTable').getElementsByTagName('tbody')[0];
-  // Assuming there's only one item since we're getting the last entry
-  var item = items[0];
-  if (item) {
-      var row = table.insertRow();
-      row.insertCell(0).innerText = item.testrunid;
-      row.insertCell(1).innerText = item.testcaseid;
+    const tableBody = document.getElementById('dynamodbTable').getElementsByTagName('tbody')[0];
 
-      var details = item.details;
-      row.insertCell(2).innerText = details.EndTime.S;
-      row.insertCell(3).innerText = details.ErrorMessage.S;
-      row.insertCell(4).innerText = details.StartTime.S;
-      row.insertCell(5).innerText = details.Status.S;
-      row.insertCell(6).innerText = details.TimeTaken.S;
-  }
+    // Clear the table before populating it
+    while(tableBody.firstChild) {
+        tableBody.removeChild(tableBody.firstChild);
+    }
+
+    items.forEach(function(item) {
+        let row = tableBody.insertRow();
+        row.insertCell(0).textContent = item.testrunid;
+        row.insertCell(1).textContent = item.testcaseid;
+        row.insertCell(2).textContent = item.details.EndTime.S;
+        row.insertCell(3).textContent = item.details.ErrorMessage.S;
+        row.insertCell(4).textContent = item.details.StartTime.S;
+        row.insertCell(5).textContent = item.details.Status.S;
+        row.insertCell(6).textContent = item.details.TimeTaken.S;
+    });
 }
+
+// Attach event listener to login button
+document.getElementById('login').addEventListener('click', authenticate);

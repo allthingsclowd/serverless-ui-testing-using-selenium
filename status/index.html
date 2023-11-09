@@ -2,29 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DynamoDB Entry Viewer</title>
-    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.799.0.min.js"></script>
+    <title>Status Page</title>
+    <!-- Include the Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
+    <style>
+        body {
+            padding-top: 20px;
+        }
+        .container {
+            padding-bottom: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>DynamoDB Last Entry Viewer</h1>
-    <button id="login">Login with Cognito</button>
-    <table id="resultsTable" border="1">
-        <thead>
-            <tr>
-                <th>Test Run ID</th>
-                <th>Test Case ID</th>
-                <th>End Time</th>
-                <th>Error Message</th>
-                <th>Start Time</th>
-                <th>Status</th>
-                <th>Time Taken</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Results will be populated here -->
-        </tbody>
-    </table>
+    <div class="container">
+        <h1 class="text-center">STATUS PAGE</h1>
+        <div class="text-center">
+            <button id="login" class="btn btn-primary">Login with AWS Cognito</button>
+        </div>
+        <div class="table-responsive">
+            <table id="dynamodbTable" class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Test Run ID</th>
+                        <th>Test Case ID</th>
+                        <th>End Time</th>
+                        <th>Error Message</th>
+                        <th>Start Time</th>
+                        <th>Status</th>
+                        <th>Time Taken</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows will be added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <script src="generatetable.js"></script>
 </body>
