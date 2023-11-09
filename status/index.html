@@ -21,8 +21,13 @@
 <body>
     <div class="container">
         <h1 class="text-center">STATUS PAGE</h1>
-        <div class="text-center">
-            <button id="login" class="btn btn-primary">Login with AWS Cognito</button>
+        <div class="row">
+            <div class="col-12 col-md-4 mb-3">
+                <select id="testRunIdDropdown" class="form-control">
+                    <option value="">Select Test Run ID</option>
+                    <!-- Options will be added here dynamically -->
+                </select>
+            </div>
         </div>
         <div class="table-responsive">
             <table id="dynamodbTable" class="table table-striped">

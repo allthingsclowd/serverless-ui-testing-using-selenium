@@ -1,7 +1,7 @@
 // Initialize the Amazon Cognito credentials provider
-AWS.config.region = 'eu-west-2'; // Region
+AWS.config.region = 'AWS_REGION'; // Region
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'eu-west-2:0886abc9-4307-4e8b-a155-54624a27e0cf',
+    IdentityPoolId: 'Cognito_IDP_ID',
 });
 
 // Function to authenticate with Cognito
@@ -12,15 +12,39 @@ function authenticate() {
             return;
         }
         console.log("Cognito Identity Id: " + AWS.config.credentials.identityId);
-        listDynamoDBRecords();
+        populateTestRunIdDropdown();
     });
 }
 
-// Function to list records from DynamoDB
-function listDynamoDBRecords() {
+// Function to populate the testrunid dropdown
+function populateTestRunIdDropdown() {
     const docClient = new AWS.DynamoDB.DocumentClient();
     const params = {
-        TableName: 'StatusTable-bananas',
+        TableName: 'DDB_STATUS_TABLE',
+        ProjectionExpression: 'testrunid'
+    };
+
+    docClient.scan(params, function(err, data) {
+        if (err) {
+            console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
+        } else {
+            const uniqueTestRunIds = Array.from(new Set(data.Items.map(item => item.testrunid)));
+            const dropdown = document.getElementById('testRunIdDropdown');
+            uniqueTestRunIds.forEach(testrunid => {
+                let option = new Option(testrunid, testrunid);
+                dropdown.add(option);
+            });
+        }
+    });
+}
+
+// Function to update the table based on selected testrunid
+function updateTableForTestRunId(testrunid) {
+    const docClient = new AWS.DynamoDB.DocumentClient();
+    const params = {
+        TableName: 'DDB_STATUS_TABLE',
+        FilterExpression: 'testrunid = :testrunid',
+        ExpressionAttributeValues: { ':testrunid': testrunid }
     };
 
     docClient.scan(params, function(err, data) {
@@ -53,5 +77,12 @@ function populateTable(items) {
     });
 }
 
-// Attach event listener to login button
-document.getElementById('login').addEventListener('click', authenticate);
+// Attach event listeners
+document.getElementById('testRunIdDropdown').addEventListener('change', function() {
+    const selectedTestRunId = this.value;
+    if (selectedTestRunId) {
+        updateTableForTestRunId(selectedTestRunId);
+    }
+});
+
+authenticate(); // Call authenticate when the script loads
