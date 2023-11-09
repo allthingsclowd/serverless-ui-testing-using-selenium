@@ -73,10 +73,13 @@ function populateTable(items) {
         row.insertCell(3).textContent = item.details.ErrorMessage;
         row.insertCell(4).textContent = item.details.StartTime;
         
-        if (item.details.Status === "Passed") {
-          row.insertCell(5).innerHTML = '<i class="bi bi-check-circle-fill text-success"></i>'; // Bootstrap check icon
+        // Add a new cell for status
+        let statusCell = row.insertCell(5);
+        // Check the status and add the appropriate icon
+        if (item.details.Status === 'Passed') {
+            statusCell.innerHTML = '<i class="bi bi-check-circle-fill text-success"></i>'; // Bootstrap check icon
         } else {
-          row.insertCell(5).innerHTML = '<i class="bi bi-x-circle-fill text-danger"></i>'; // Bootstrap times icon
+            statusCell.innerHTML = '<i class="bi bi-x-circle-fill text-danger"></i>'; // Bootstrap times icon
         }
       
         row.insertCell(6).textContent = item.details.TimeTaken;
