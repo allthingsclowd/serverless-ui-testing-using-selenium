@@ -110,7 +110,9 @@ function tableCreate() {
       if (mutation.type === 'childList' && firstload == 1) {
         body = document.body;
         testRunTab  = document.createElement('table');
-        testRunTab.setAttribute('id', 'testRunTab');
+        if (testRunTab.getAttribute('id') != 'testRunTab') {
+          testRunTab.setAttribute('id', 'testRunTab');
+        }
         body.appendChild(testRunTab);
         body.appendChild(document.createElement('br'));
         tableCreate();
