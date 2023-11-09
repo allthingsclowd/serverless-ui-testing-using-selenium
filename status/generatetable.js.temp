@@ -72,7 +72,13 @@ function populateTable(items) {
         row.insertCell(2).textContent = item.details.EndTime;
         row.insertCell(3).textContent = item.details.ErrorMessage;
         row.insertCell(4).textContent = item.details.StartTime;
-        row.insertCell(5).textContent = item.details.Status;
+        
+        if (item.details.Status === "Passed") {
+          row.insertCell(5).innerHTML = '<i class="bi bi-check-circle-fill text-success"></i>'; // Bootstrap check icon
+        } else {
+          row.insertCell(5).innerHTML = '<i class="bi bi-x-circle-fill text-danger"></i>'; // Bootstrap times icon
+        }
+      
         row.insertCell(6).textContent = item.details.TimeTaken;
     });
 
