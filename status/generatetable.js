@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-  IdentityPoolId: 'eu-west-2:b062d609-d871-4b87-9f94-43de53c14be6',
+  IdentityPoolId: 'eu-west-2:d08b7fac-6c5c-45e5-a934-98041f52db66',
 });
 
 AWS.config.region = "eu-west-2";
@@ -90,7 +90,7 @@ function getdata(trunid, params) {
 function tableCreate() {
   var trunid = document.getElementById("testrunid").value;
   var params = {
-    TableName: 'StatusTable-test-framework',
+    TableName: 'StatusTable-decky',
     KeyConditionExpression: "#testrunid = :trid",
     ExpressionAttributeNames: {
       "#testrunid": "testrunid"
@@ -104,22 +104,14 @@ function tableCreate() {
   body.replaceChild(trun_tbl, document.getElementById('testRunTab'));
 }
 
-  // Create a MutationObserver instance
-  var observer = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {
-      if (mutation.type === 'childList' && firstload == 1) {
-        body = document.body;
-        testRunTab  = document.createElement('table');
-        if (testRunTab.getAttribute('id') != 'testRunTab') {
-          testRunTab.setAttribute('id', 'testRunTab');
-        }
-        body.appendChild(testRunTab);
-        body.appendChild(document.createElement('br'));
-        tableCreate();
-        firstload = 0;
-      }
-    });
-  });
-  
-  // Start observing the document with the configured parameters
-  observer.observe(document, { childList: true, subtree: true });
+document.addEventListener("DOMContentLoaded", function(event) {
+  body = document.body;
+  if (firstload == 1){
+    testRunTab  = document.createElement('table');
+    testRunTab.setAttribute('id', 'testRunTab');
+    body.appendChild(testRunTab);
+    body.appendChild(document.createElement('br'));
+    tableCreate();
+    firstload = 0;
+  }
+});
