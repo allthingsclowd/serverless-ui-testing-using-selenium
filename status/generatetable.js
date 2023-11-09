@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-  IdentityPoolId: 'eu-west-2:d08b7fac-6c5c-45e5-a934-98041f52db66',
+  IdentityPoolId: 'eu-west-2:0886abc9-4307-4e8b-a155-54624a27e0cf',
 });
 
 AWS.config.region = "eu-west-2";
@@ -90,7 +90,7 @@ function getdata(trunid, params) {
 function tableCreate() {
   var trunid = document.getElementById("testrunid").value;
   var params = {
-    TableName: 'StatusTable-decky',
+    TableName: 'StatusTable-bananas',
     KeyConditionExpression: "#testrunid = :trid",
     ExpressionAttributeNames: {
       "#testrunid": "testrunid"
