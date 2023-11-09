@@ -1,7 +1,7 @@
 // Initialize the Amazon Cognito credentials provider
-AWS.config.region = 'AWS_REGION'; // Region
+AWS.config.region = 'eu-west-2'; // Region
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'Cognito_IDP_ID',
+    IdentityPoolId: 'eu-west-2:0886abc9-4307-4e8b-a155-54624a27e0cf',
 });
 
 // Function to authenticate with Cognito
@@ -20,7 +20,7 @@ function authenticate() {
 function populateTestRunIdDropdown() {
     const docClient = new AWS.DynamoDB.DocumentClient();
     const params = {
-        TableName: 'DDB_STATUS_TABLE',
+        TableName: 'StatusTable-bananas',
         ProjectionExpression: 'testrunid'
     };
 
@@ -42,7 +42,7 @@ function populateTestRunIdDropdown() {
 function updateTableForTestRunId(testrunid) {
     const docClient = new AWS.DynamoDB.DocumentClient();
     const params = {
-        TableName: 'DDB_STATUS_TABLE',
+        TableName: 'StatusTable-bananas',
         FilterExpression: 'testrunid = :testrunid',
         ExpressionAttributeValues: { ':testrunid': testrunid }
     };
