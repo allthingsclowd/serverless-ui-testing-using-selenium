@@ -1,117 +1,54 @@
-/*jshint esversion: 6 */
+document.getElementById('login').addEventListener('click', function() {
+  AWS.config.region = 'AWS_REGION'; // Replace with your AWS region
+  AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+      IdentityPoolId: 'Cognito_IDP_ID', // Replace with your Cognito Identity Pool ID
+  });
 
-AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-  IdentityPoolId: 'eu-west-2:0886abc9-4307-4e8b-a155-54624a27e0cf',
+  AWS.config.credentials.get(function(err) {
+      if (err) {
+          console.error("Error retrieving credentials: ", err);
+          return;
+      }
+      fetchLastDynamoDBEntry();
+  });
 });
 
-AWS.config.region = "eu-west-2";
-var ddb = new AWS.DynamoDB.DocumentClient();
-var body, chrome_tab, firefox_tab;
-var firstload = 1;
-
-function getdata(trunid, params) {
-  var flag;
-  var tbl = document.createElement('table');
-  tbl.setAttribute('id', 'testRunTab');
-  tbl.style.backgroundColor = "#ccdecc";
-  tbl.style.fontFamily = "Arial";
-  tbl.style.fontSize = "90%";
-  tbl.style.whiteSpace = "nowrap";
-  thead = tbl.createTHead();
-  tr = thead.insertRow();
-  td = tr.insertCell();
-  td.appendChild(document.createTextNode(trunid));
-  td.style.fontWeight = 'bolder';
-  td.setAttribute('colSpan', '8');
-  // td.verticalAlign = 'top';
-  tr = thead.insertRow();
-  tr.style.fontWeight = 'bolder';
-  td = tr.insertCell();
-  td.appendChild(document.createTextNode('Module'));
-  td = tr.insertCell();
-  td.appendChild(document.createTextNode('Browser'));
-  td = tr.insertCell();
-  td.appendChild(document.createTextNode('Testcase'));
-  td = tr.insertCell();
-  td.appendChild(document.createTextNode('Status'));
-  td = tr.insertCell();
-  td.appendChild(document.createTextNode('Start Time'));
-  td = tr.insertCell();
-  td.appendChild(document.createTextNode('End Time'));
-  td = tr.insertCell();
-  td.appendChild(document.createTextNode('Time Taken (ms)'));
-  td = tr.insertCell();
-  td.appendChild(document.createTextNode('Error Message'));
-  ddb.query(params, function (err, data) {
-    if (err) console.error(err, err.stack); // an error occurred
-    else {
-      if ( data.Items.length === 0 ){
-        tr = tbl.insertRow();
-        td = tr.insertCell();
-        td.appendChild(document.createTextNode("Test run " + trunid + " doesn't exists"));
-        td.setAttribute('colSpan', '8');
-        td.style.color = 'red';
-        return tbl
-      }
-      tdata = data.Items;
-      // console.log(tdata);
-      for (var i = 0; i < tdata.length; i++) {
-        tcdetails = tdata[i].testcaseid.split('-');
-        tr = tbl.insertRow();
-        td = tr.insertCell();
-        td.appendChild(document.createTextNode(tcdetails[0]));
-        td = tr.insertCell();
-        td.appendChild(document.createTextNode(tcdetails[1]));
-        td = tr.insertCell();
-        td.appendChild(document.createTextNode(tcdetails[2]));
-        td = tr.insertCell();
-        td.appendChild(document.createTextNode(tdata[i].details.Status));
-        if ( tdata[i].details.Status == 'Passed' ){
-          td.style.color = 'green';
-        }
-        else {
-          td.style.color = 'red';
-        }
-        td = tr.insertCell();
-        td.appendChild(document.createTextNode(tdata[i].details.StartTime));
-        td = tr.insertCell();
-        td.appendChild(document.createTextNode(tdata[i].details.EndTime));
-        td = tr.insertCell();
-        td.appendChild(document.createTextNode(tdata[i].details.TimeTaken));
-        td = tr.insertCell();
-        td.appendChild(document.createTextNode(tdata[i].details.ErrorMessage));
-      }
-    }
-  });
-  return tbl;
-}
-
-
-function tableCreate() {
-  var trunid = document.getElementById("testrunid").value;
+function fetchLastDynamoDBEntry() {
+  var docClient = new AWS.DynamoDB.DocumentClient();
   var params = {
-    TableName: 'StatusTable-bananas',
-    KeyConditionExpression: "#testrunid = :trid",
-    ExpressionAttributeNames: {
-      "#testrunid": "testrunid"
-    },
-    ExpressionAttributeValues: { 
-      ":trid": trunid
-    }
+      TableName: "DDB_STATUS_TABLE", // Replace with your table name
+      // Assuming 'testcaseid' can be used to get the latest entry
+      KeyConditionExpression: "testrunid = :testrunid",
+      ExpressionAttributeValues: {
+          ":testrunid": "suit-d31c933c-f994-46c7-8076-9e347f4bf977" // Replace with your partition key value
+      },
+      ScanIndexForward: false, // This will sort the results in descending order
+      Limit: 1 // We only want the latest (last) entry
   };
 
-  trun_tbl = getdata(trunid, params);
-  body.replaceChild(trun_tbl, document.getElementById('testRunTab'));
+  docClient.query(params, function(err, data) {
+      if (err) {
+          console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+      } else {
+          populateTable(data.Items);
+      }
+  });
 }
 
-document.addEventListener("DOMContentLoaded", function(event) {
-  body = document.body;
-  if (firstload == 1){
-    testRunTab  = document.createElement('table');
-    testRunTab.setAttribute('id', 'testRunTab');
-    body.appendChild(testRunTab);
-    body.appendChild(document.createElement('br'));
-    tableCreate();
-    firstload = 0;
+function populateTable(items) {
+  var table = document.getElementById('resultsTable').getElementsByTagName('tbody')[0];
+  // Assuming there's only one item since we're getting the last entry
+  var item = items[0];
+  if (item) {
+      var row = table.insertRow();
+      row.insertCell(0).innerText = item.testrunid;
+      row.insertCell(1).innerText = item.testcaseid;
+
+      var details = item.details;
+      row.insertCell(2).innerText = details.EndTime.S;
+      row.insertCell(3).innerText = details.ErrorMessage.S;
+      row.insertCell(4).innerText = details.StartTime.S;
+      row.insertCell(5).innerText = details.Status.S;
+      row.insertCell(6).innerText = details.TimeTaken.S;
   }
-});
+}
