@@ -19,6 +19,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.chrome.service import ChromeService
+from selenium.webdriver.firefox.service import FirefoxService
+
 
 
 br = os.environ['BROWSER'].lower()
@@ -48,11 +51,9 @@ if br == 'firefox':
     random_dir = '/tmp/' + ''.join(random.choice(string.ascii_lowercase) for i in range(8))
     os.mkdir(random_dir)
     ff_profile = webdriver.FirefoxProfile(profile_directory=random_dir)
-    driver = webdriver.Firefox(firefox_profile=ff_profile,
-                               firefox_binary='/opt/firefox/' + br_version + '/firefox',
-                               executable_path='/opt/geckodriver/' + driver_version + '/geckodriver',
-                               options=firefox_options,
-                               service_log_path='/tmp/geckodriver.log')
+    driver_service = FirefoxService('/opt/geckodriver/' + driver_version + '/geckodriver')
+    driver_service.log_path = '/tmp/geckodriver.log'
+    driver = webdriver.Firefox(firefox_profile=ff_profile, firefox_binary='/opt/firefox/' + br_version + '/firefox', service=driver_service, options=firefox_options)
     print('Started Firefox Driver')
 elif br == 'chrome':
     chrome_options = ChromeOptions()
@@ -68,9 +69,9 @@ elif br == 'chrome':
     chrome_options.add_argument("--user-data-dir=/tmp/chrome-user-data")
     chrome_options.add_argument("--remote-debugging-port=9222")
     chrome_options.binary_location = '/opt/chrome/' + br_version + '/chrome'
-    driver = webdriver.Chrome(executable_path='/opt/chromedriver/' + driver_version + '/chromedriver',
-                              options=chrome_options,
-                              service_log_path='/tmp/chromedriver.log')
+    driver_service = ChromeService('/opt/chromedriver/' + driver_version + '/chromedriver')
+    driver_service.log_path = '/tmp/chromedriver.log'
+    driver = webdriver.Chrome(service=driver_service, options=chrome_options)
     if driver:
         print('Started Chrome Driver')
 else:
