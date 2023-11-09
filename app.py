@@ -50,10 +50,11 @@ if br == 'firefox':
     firefox_options.add_argument('-height 1440')
     random_dir = '/tmp/' + ''.join(random.choice(string.ascii_lowercase) for i in range(8))
     os.mkdir(random_dir)
-    ff_profile = webdriver.FirefoxProfile(profile_directory=random_dir)
+    firefox_options.add_argument('--user-data-dir=' + random_dir)
+    firefox_options.binary_location = '/opt/firefox/' + br_version + '/firefox'
     driver_service = FirefoxService('/opt/geckodriver/' + driver_version + '/geckodriver')
     driver_service.log_path = '/tmp/geckodriver.log'
-    driver = webdriver.Firefox(firefox_profile=ff_profile, firefox_binary='/opt/firefox/' + br_version + '/firefox', service=driver_service, options=firefox_options)
+    driver = webdriver.Firefox(service=driver_service, options=firefox_options)
     print('Started Firefox Driver')
 elif br == 'chrome':
     chrome_options = ChromeOptions()
