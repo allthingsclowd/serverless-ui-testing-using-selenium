@@ -30,7 +30,7 @@ phases:
           git config --local user.name "CodeBuild"
           git config --local user.email "codebuild@no-reply.com"
           git add status/generatetable.js
-          git rm status/generatetable.js.temp
+          # git rm status/generatetable.js.temp # kepp this in the repo for future reference - minimal effort to recreate each time
           git commit -m "Updated region, DDB Table & Cognito IDP"
           git branch tmp
           git checkout main
