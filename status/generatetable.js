@@ -104,14 +104,20 @@ function tableCreate() {
   body.replaceChild(trun_tbl, document.getElementById('testRunTab'));
 }
 
-document.addEventListener("DOMContentLoaded", function(event) {
-  body = document.body;
-  if (firstload == 1){
-    testRunTab  = document.createElement('table');
-    testRunTab.setAttribute('id', 'testRunTab');
-    body.appendChild(testRunTab);
-    body.appendChild(document.createElement('br'));
-    tableCreate();
-    firstload = 0;
-  }
-});
+  // Create a MutationObserver instance
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'childList' && firstload == 1) {
+        body = document.body;
+        testRunTab  = document.createElement('table');
+        testRunTab.setAttribute('id', 'testRunTab');
+        body.appendChild(testRunTab);
+        body.appendChild(document.createElement('br'));
+        tableCreate();
+        firstload = 0;
+      }
+    });
+  });
+  
+  // Start observing the document with the configured parameters
+  observer.observe(document, { childList: true, subtree: true });
