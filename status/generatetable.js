@@ -1,7 +1,7 @@
 document.getElementById('login').addEventListener('click', function() {
-  AWS.config.region = 'AWS_REGION'; // Replace with your AWS region
+  AWS.config.region = 'eu-west-2'; // Replace with your AWS region
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-      IdentityPoolId: 'Cognito_IDP_ID', // Replace with your Cognito Identity Pool ID
+      IdentityPoolId: 'eu-west-2:0886abc9-4307-4e8b-a155-54624a27e0cf', // Replace with your Cognito Identity Pool ID
   });
 
   AWS.config.credentials.get(function(err) {
@@ -16,7 +16,7 @@ document.getElementById('login').addEventListener('click', function() {
 function fetchLastDynamoDBEntry() {
   var docClient = new AWS.DynamoDB.DocumentClient();
   var params = {
-      TableName: "DDB_STATUS_TABLE", // Replace with your table name
+      TableName: "StatusTable-bananas", // Replace with your table name
       // Assuming 'testcaseid' can be used to get the latest entry
       KeyConditionExpression: "testrunid = :testrunid",
       ExpressionAttributeValues: {
