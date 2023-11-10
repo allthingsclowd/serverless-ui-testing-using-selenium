@@ -1,5 +1,5 @@
-pyvirtualdisplay
-awslambdaric
-selenium
-boto3
-webdriver-manager
+pyvirtualdisplay==3.0
+awslambdaric==2.0.8
+selenium==4.15.2
+boto3==1.28.83
+webdriver-manager==4.0.1
