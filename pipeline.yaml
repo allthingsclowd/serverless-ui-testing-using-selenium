@@ -7,11 +7,11 @@ Parameters:
   RepositoryName:
     Description: Enter the name of the CodeCommit repository
     Type: String
-    Default: AWSExampleTestPipeline
+    Default: serverless-ui-testing
   ApprovalEmail:
     Description: Enter the email address to which approval notification needs to be sent
     Type: String
-    Default: graham@allthingscloud.eu
+    Default: no-reply@example.com
     AllowedPattern: ^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$
     ConstraintDescription: Expects a valid email address
 
