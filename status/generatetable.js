@@ -66,22 +66,22 @@ function populateTable(items) {
     }
 
     items.forEach(function(item) {
-      let row = tableBody.insertRow();
-      // Add a new cell for status
-      let statusCell = row.insertCell(5);
-      // Check the status and add the appropriate icon
-      if (item.details.Status === 'Passed') {
-          statusCell.innerHTML = '<i class="bi bi-check-circle-fill text-success"></i>'; // Bootstrap check icon
-      } else {
-          statusCell.innerHTML = '<i class="bi bi-x-circle-fill text-danger"></i>'; // Bootstrap times icon
-      }
-      row.insertCell(0).textContent = item.testrunid;
-      row.insertCell(1).textContent = item.testcaseid;
-      row.insertCell(2).textContent = item.details.EndTime;
-      row.insertCell(3).textContent = item.details.ErrorMessage;
-      row.insertCell(4).textContent = item.details.StartTime;
-      row.insertCell(6).textContent = item.details.TimeTaken;
-  });
+        let row = tableBody.insertRow();
+        // Add a new cell for status
+        let statusCell = row.insertCell(0);
+        // Check the status and add the appropriate icon
+        if (item.details.Status === 'Passed') {
+            statusCell.innerHTML = '<i class="bi bi-check-circle-fill text-success"></i>'; // Bootstrap check icon
+        } else {
+            statusCell.innerHTML = '<i class="bi bi-x-circle-fill text-danger"></i>'; // Bootstrap times icon
+        }
+        row.insertCell(1).textContent = item.testrunid;
+        row.insertCell(2).textContent = item.testcaseid;
+        row.insertCell(3).textContent = item.details.EndTime;
+        row.insertCell(4).textContent = item.details.ErrorMessage;
+        row.insertCell(5).textContent = item.details.StartTime;
+        row.insertCell(6).textContent = item.details.TimeTaken;
+    });
 
     // Inform the MutationObserver about the table update
     mutationObserverCallback();
