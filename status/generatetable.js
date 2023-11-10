@@ -67,12 +67,6 @@ function populateTable(items) {
 
     items.forEach(function(item) {
         let row = tableBody.insertRow();
-        row.insertCell(0).textContent = item.testrunid;
-        row.insertCell(1).textContent = item.testcaseid;
-        row.insertCell(2).textContent = item.details.EndTime;
-        row.insertCell(3).textContent = item.details.ErrorMessage;
-        row.insertCell(4).textContent = item.details.StartTime;
-        
         // Add a new cell for status
         let statusCell = row.insertCell(5);
         // Check the status and add the appropriate icon
@@ -81,7 +75,11 @@ function populateTable(items) {
         } else {
             statusCell.innerHTML = '<i class="bi bi-x-circle-fill text-danger"></i>'; // Bootstrap times icon
         }
-      
+        row.insertCell(0).textContent = item.testrunid;
+        row.insertCell(1).textContent = item.testcaseid;
+        row.insertCell(2).textContent = item.details.EndTime;
+        row.insertCell(3).textContent = item.details.ErrorMessage;
+        row.insertCell(4).textContent = item.details.StartTime;
         row.insertCell(6).textContent = item.details.TimeTaken;
     });
 
