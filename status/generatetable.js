@@ -1,7 +1,7 @@
 // Initialize the Amazon Cognito credentials provider
 AWS.config.region = 'eu-west-2'; // Region
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'eu-west-2:0886abc9-4307-4e8b-a155-54624a27e0cf',
+    IdentityPoolId: 'eu-west-2:dc4a3199-d9c7-47b1-b5e2-e1667cfab2a7',
 });
 
 // Function to authenticate with Cognito
@@ -20,7 +20,7 @@ function authenticate() {
 function populateTestRunIdDropdown() {
     const docClient = new AWS.DynamoDB.DocumentClient();
     const params = {
-        TableName: 'StatusTable-bananas',
+        TableName: 'StatusTable-finaltest',
         ProjectionExpression: 'testrunid'
     };
 
@@ -42,7 +42,7 @@ function populateTestRunIdDropdown() {
 function updateTableForTestRunId(testrunid) {
     const docClient = new AWS.DynamoDB.DocumentClient();
     const params = {
-        TableName: 'StatusTable-bananas',
+        TableName: 'StatusTable-finaltest',
         FilterExpression: 'testrunid = :testrunid',
         ExpressionAttributeValues: { ':testrunid': testrunid }
     };
@@ -66,22 +66,22 @@ function populateTable(items) {
     }
 
     items.forEach(function(item) {
-        let row = tableBody.insertRow();
-        // Add a new cell for status
-        let statusCell = row.insertCell(5);
-        // Check the status and add the appropriate icon
-        if (item.details.Status === 'Passed') {
-            statusCell.innerHTML = '<i class="bi bi-check-circle-fill text-success"></i>'; // Bootstrap check icon
-        } else {
-            statusCell.innerHTML = '<i class="bi bi-x-circle-fill text-danger"></i>'; // Bootstrap times icon
-        }
-        row.insertCell(0).textContent = item.testrunid;
-        row.insertCell(1).textContent = item.testcaseid;
-        row.insertCell(2).textContent = item.details.EndTime;
-        row.insertCell(3).textContent = item.details.ErrorMessage;
-        row.insertCell(4).textContent = item.details.StartTime;
-        row.insertCell(6).textContent = item.details.TimeTaken;
-    });
+      let row = tableBody.insertRow();
+      // Add a new cell for status
+      let statusCell = row.insertCell(5);
+      // Check the status and add the appropriate icon
+      if (item.details.Status === 'Passed') {
+          statusCell.innerHTML = '<i class="bi bi-check-circle-fill text-success"></i>'; // Bootstrap check icon
+      } else {
+          statusCell.innerHTML = '<i class="bi bi-x-circle-fill text-danger"></i>'; // Bootstrap times icon
+      }
+      row.insertCell(0).textContent = item.testrunid;
+      row.insertCell(1).textContent = item.testcaseid;
+      row.insertCell(2).textContent = item.details.EndTime;
+      row.insertCell(3).textContent = item.details.ErrorMessage;
+      row.insertCell(4).textContent = item.details.StartTime;
+      row.insertCell(6).textContent = item.details.TimeTaken;
+  });
 
     // Inform the MutationObserver about the table update
     mutationObserverCallback();
